@@ -8,15 +8,16 @@ import (
 )
 func main() {
 	client := ivona.New("GDNAICTDMLSLU5426OAA", "2qUFTF8ZF9wqy7xoGBY+YXLEu+M2Qqalf/pSrd9m")
-	text, err := ioutil.ReadFile("/home/vitaly/Desktop/test.txt")
+	text, err := ioutil.ReadFile("/home/vitaly/Desktop/article.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	arrayOfParagraphs := strings.Split(string(text), "\n")
+	arrayOfParagraphs := strings.Split(string(text), "\n\n")
 	i := 0
 	for _,paragraph := range arrayOfParagraphs {
-		if (len(paragraph) < 4) { // against empty lines
+		paragraph = strings.TrimSpace(paragraph)
+		if (len(paragraph) < 1) { // against empty lines
 			continue
 		}
 		log.Printf("%v\n", paragraph)
@@ -31,7 +32,7 @@ func main() {
 		}
 
 		i++
-		file := fmt.Sprintf("/home/vitaly/Desktop/ivona/tts%04d.ogg", i) // files like 0001.ogg
+		file := fmt.Sprintf("/home/vitaly/Desktop/ivona-article/tts%04d.ogg", i) // files like 0001.ogg
 		ioutil.WriteFile(file, r.Audio, 0644)
 	}
 }

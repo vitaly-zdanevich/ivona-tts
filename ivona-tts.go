@@ -20,7 +20,7 @@ func main() {
 		if (len(paragraph) < 1) { // against empty lines
 			continue
 		}
-		log.Printf("%v\n", paragraph)
+		log.Printf("%s", paragraph)
 		options := ivona.NewSpeechOptions(paragraph)
 		options.Voice.Language = "ru-RU"
 		options.Voice.Name = "Maxim"
